@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qur’an with Urdu Translation</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 16px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    h3 {
+      margin-bottom: 4px;
+      margin-top: 24px;
+    }
+    audio {
+      width: 100%;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Qur’an with Urdu Translation</h1>
+<p style="text-align:center">Sheikh Yasser Al Dossari</p>
+
+<div id="surah-list"></div>
+
+<footer>
+  <p>© Developer:Ehsaan Shameem</p>
+</footer>
+
+<script>
+const baseURL = "https://archive.org/download/TheholyQuranUrduYasserAlDossari/";
+
+const surahs = [
+  "Al Fatiha","Al Baqarah","Al Imran","An Nisa","Al Ma'idah","Al An'am","Al A'raf","Al Anfal","At Tawbah","Yunus",
+  "Hud","Yusuf","Ar Rad","Ibrahim","Al Hijr","An Nahl","Al Isra","Al Kahf","Maryam","Ta Ha",
+  "Al Anbiya","Al Hajj","Al Mu'minun","An Nur","Al Furqan","Ash Shu'ara","An Naml","Al Qasas","Al Ankabut","Ar Rum",
+  "Luqman","As Sajda","Al Ahzab","Saba","Fatir","Ya Sin","As Saffat","Sad","Az Zumar","Ghafir",
+  "Fussilat","Ash Shuura","Az Zukhruf","Ad Dukhan","Al Jathiya","Al Ahqaf","Muhammad","Al Fath","Al Hujurat","Qaf",
+  "Adh Dhariyat","At Tur","An Najm","Al Qamar","Ar Rahman","Al Waqia","Al Hadid","Al Mujadila","Al Hashr","Al Mumtahina",
+  "As Saff","Al Jumu'a","Al Munafiqun","At Taghabun","At Talaq","At Tahrim","Al Mulk","Al Qalam","Al Haqqa","Al Ma'arij",
+  "Nuh","Al Jin","Al Muzzammil","Al Mudathir","Al Qiyama","Al Insan","Al Mursalat","An Naba","An Nazi'at","Abasa",
+  "At Takwir","Al Infitar","Al Mutaffifin","Al Inshiqaq","Al Buruj","At Tariq","Al Ala","Al Ghashiya","Al Fajr","Al Balad",
+  "Ash Shams","Al Layl","Ad Duha","Al Sharh","At Tin","Al Alaq","Al Qadr","Al Bayyina","Az Zalzala","Al Adiyat",
+  "Al Qaria","At Takathur","Al Asr","Al Humaza","Al Fil","Quraysh","Al Ma'un","Al Kauthar","Al Kafirun","An Nasr",
+  "Al Masad","Al Ikhlas","Al Falaq","An Nas"
+];
+
+const container = document.getElementById("surah-list");
+
+surahs.forEach((name, index) => {
+  const number = String(index + 1).padStart(3, "0");
+  const title = document.createElement("h3");
+  title.textContent = `${index + 1}. ${name}`;
+
+  const audio = document.createElement("audio");
+  audio.controls = true;
+
+  const src = `${baseURL}${number}%20${encodeURIComponent(name)}.mp3`;
+
+  const source = document.createElement("source");
+  source.src = src;
+  source.type = "audio/mpeg";
+
+  audio.appendChild(source);
+  container.appendChild(title);
+  container.appendChild(audio);
+});
+</script>
+
+</body>
+</html>
